@@ -1,1 +1,1 @@
-web: npm install -g elm && elm-make src/Main.elm --output server/static/index.html && cd server && python server.py
+web: cd server && python server.py
