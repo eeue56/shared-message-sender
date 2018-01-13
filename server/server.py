@@ -1,6 +1,7 @@
 import os 
 
 ENV = os.environ
+PORT = int(ENV.get('PORT', '3000'))
 
 from flask import Flask, jsonify, url_for
 app = Flask(__name__)
@@ -32,4 +33,4 @@ def moderators():
  
 
 if __name__ == '__main__':
-    app.run()
+    app.run(port=PORT)
