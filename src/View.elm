@@ -133,7 +133,7 @@ viewSubmit model =
 viewModerator : Moderator -> ElementStyle a
 viewModerator { name, hasChecked } =
     Element.Input.checkbox NoStyle
-        []
+        [ Element.Attributes.center ]
         { onChange = ToggleConfirmation name
         , checked = hasChecked
         , label = Element.el NoStyle [] (Element.text name)
@@ -141,12 +141,23 @@ viewModerator { name, hasChecked } =
         }
 
 
+viewWhoHasApproved : ElementStyle a
+viewWhoHasApproved =
+    Element.text "Who agrees with the above message?"
+        |> Element.el
+            NoStyle
+            [ Element.Attributes.paddingTop 10
+            , Element.Attributes.paddingBottom 10
+            ]
+
+
 viewModerators : Model Msg -> ElementStyle a
 viewModerators model =
     Element.column
         NoStyle
         [ Element.Attributes.center ]
-        (List.map viewModerator model.moderators)
+        (viewWhoHasApproved :: List.map viewModerator model.moderators)
+        |> Element.el NoStyle [ Element.Attributes.center, Element.Attributes.verticalCenter ]
 
 
 viewErrors : Model Msg -> ElementStyle a
